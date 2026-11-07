@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cheka General Dealers – Kitwe</title>
-<meta name="description" content="Cheka General Dealers, East Garneton, Kitwe: groceries, drinks, household items and stationery. Order on WhatsApp.">
+<meta name="description" content="Cheka General Dealers, East Garneton, Kitwe: groceries, snacks, drinks, stationery, printing and photocopying. Order on WhatsApp.">
 <meta name="theme-color" content="#1f6feb">
 <style>
 :root{--bg:#fafbfc;--card:#fff;--tx:#1b2733;--mut:#5f6b78;--pri:#1f6feb;--pri2:#0b4fb8;--acc:#25d366;--bd:#e3e8ed;--soft:#eef4ff;color-scheme:light}
@@ -25,12 +25,18 @@ section{padding:44px 0}h2{font-size:26px;margin:0 0 6px}.sub{color:var(--mut);ma
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}.feat .card b{display:block;margin-bottom:4px}
 .visit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 table{width:100%;border-collapse:collapse}td{padding:6px 0;border-bottom:1px solid var(--bd)}td:last-child{text-align:right;color:var(--mut)}
+input.search{width:100%;padding:11px 14px;border:1px solid var(--bd);border-radius:99px;background:var(--card);color:var(--tx);font:inherit;margin-bottom:14px}
+.img{width:100%;aspect-ratio:1;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:44px;overflow:hidden}.img img{width:100%;height:100%;object-fit:cover}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.gal figure{margin:0}.gal .img{aspect-ratio:4/3;font-size:15px;color:var(--mut);text-align:center;padding:6px}.gal figcaption{font-size:14px;color:var(--mut);margin-top:4px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}.steps .n{display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--pri);color:#fff;font-weight:700;margin-bottom:6px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tags span{background:var(--soft);padding:5px 14px;border-radius:99px;font-size:14px}
+.stars{color:#f5a623;letter-spacing:2px}.rev p{margin:6px 0}
 footer{border-top:1px solid var(--bd);padding:22px 0;color:var(--mut);font-size:14px;text-align:center}
 .fab{position:fixed;right:16px;bottom:16px;z-index:6;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 @media (max-width:560px){nav a:not(.keep){display:none}.brand{font-size:17px}}
 </style></head>
 <body>
-<header><div class="wrap"><a class="brand" href="#top" id="brand"></a><nav><a href="#products">Products</a><a href="#about">About</a><a href="#visit" class="keep">Visit us</a></nav></div></header>
+<header><div class="wrap"><a class="brand" href="#top" id="brand"></a><nav><a href="#products">Products</a><a href="#delivery">Delivery</a><a href="#reviews">Reviews</a><a href="#about">About</a><a href="#visit" class="keep">Visit us</a></nav></div></header>
 
 <div class="hero" id="top"><div class="wrap">
 <h1 id="h1"></h1><p id="tag"></p>
@@ -38,8 +44,27 @@ footer{border-top:1px solid var(--bd);padding:22px 0;color:var(--mut);font-size:
 </div></div>
 
 <section id="products"><div class="wrap">
-<h2>Our products</h2><p class="sub">Tap Order to send us a WhatsApp message for any item. We will confirm stock and delivery.</p>
+<h2>Our products</h2><p class="sub">Tap Order to send us a WhatsApp message for any item. We will confirm stock, price and delivery.</p>
+<input class="search" id="q" placeholder="Search products…" aria-label="Search products">
 <div class="chips" id="chips"></div><div class="grid" id="grid"></div>
+</div></section>
+
+<section id="gallery" style="background:var(--soft)"><div class="wrap">
+<h2>Inside our shop</h2><p class="sub">A look at our shop and what we stock.</p>
+<div class="gal" id="gal"></div>
+</div></section>
+
+<section id="delivery"><div class="wrap">
+<h2>Delivery</h2><p class="sub" id="d-intro"></p>
+<div class="steps" id="d-steps"></div>
+<b>Areas we deliver to</b><div class="tags" id="d-areas"></div>
+<p id="d-fee" style="color:var(--mut);margin:8px 0 16px"></p>
+<a class="btn wa" id="d-wa" target="_blank" rel="noopener">Ask about delivery</a>
+</div></section>
+
+<section id="reviews" style="background:var(--soft)"><div class="wrap">
+<h2>What customers say</h2><p class="sub">Honest words from the people we serve.</p>
+<div class="grid" id="revs"></div>
 </div></section>
 
 <section id="about" style="background:var(--soft)"><div class="wrap">
@@ -63,21 +88,45 @@ footer{border-top:1px solid var(--bd);padding:22px 0;color:var(--mut);font-size:
 var SHOP={
   name:'Cheka General Dealers',
   city:'Kitwe',
-  tagline:'Groceries, cold drinks and everyday essentials for East Garneton and all of Kitwe.',
+  tagline:'Groceries, snacks, stationery, printing and photocopying for East Garneton and all of Kitwe.',
   about:'Cheka General Dealers is a friendly neighbourhood shop in East Garneton, Kitwe. We keep our shelves stocked with the things you use every day, at fair prices, and we serve every customer with a smile.',
   features:[['Fair prices','Honest prices on everyday items, with no surprises at the till.'],['Always stocked','We restock often so the things you need are on the shelf.'],['Quick service','Order by WhatsApp and we will have it ready for you.']],
-  phone:'+260 974 435 683',            /* shown on the site and used for the Call button */
-  whatsapp:'260 974 435 683',             /* digits only, with country code, no + or spaces */
+  phone:'+260 000 000 000',            /* shown on the site and used for the Call button */
+  whatsapp:'260000000000',             /* digits only, with country code, no + or spaces */
   address:'East, Garneton, Kitwe',
   country:'Zambia',                    /* only used to find the shop on the map */
-  hours:[['Monday – Friday','7:00 am – 9:00 pm'],['Saturday','7:00 am – 9:00 pm'],['Sunday','9:00 am – 5:00 pm']],
-  currency:'K',                        /* K = Zambian kwacha. Prices below are samples */
-  products:[                           /* name, category, price, emoji */
-    ['Basmati Rice 5kg','Groceries',11.00,'🍚'],['Cooking Oil 2L','Groceries',5.50,'🛢️'],['Sugar 1kg','Groceries',1.60,'🍬'],
-    ['Bottled Water 500ml','Drinks',0.60,'💧'],['Soda 330ml','Drinks',0.90,'🥤'],
-    ['Laundry Soap Bar','Household',1.30,'🧼'],['Dish Wash Liquid 500ml','Household',2.50,'🧴'],
-    ['Notebook A5','Stationery',1.50,'📓']
-  ]
+  hours:[['Monday – Friday','7:00 am – 8:00 pm'],['Saturday','7:00 am – 8:00 pm'],['Sunday','9:00 am – 5:00 pm']],
+  currency:'K',                        /* K = Zambian kwacha */
+  products:[                           /* name, category, price, emoji. Leave price '' to show "Ask for price". Delete what you do not sell. */
+    ["Mirinda","Grocery",10,"🥤"],["Fruiticana Mango","Grocery",14,"🥭"],["Tissue","Grocery",10,"🧻"],
+    ["Vatra Big","Grocery",10,"🛒"],["Spinners","Grocery",1,"🛒"],["Mint (pack of 3)","Grocery",1,"🍬"],
+    ["Mojo","Grocery",5,"🛒"],["Petit","Grocery",1,"🛒"],["Rapid","Grocery",1,"🛒"],
+    ["Similyz","Grocery",1,"🛒"],["Chuma Chips","Grocery",1,"🍟"],["Brother Grape","Grocery",10,"🍇"],
+    ["Fclair Pops","Grocery",1,"🍭"],["Glucose Biscuit","Grocery",0.5,"🍪"],["Vanilla Joe","Grocery",6,"🛒"],
+    ["Vitana","Grocery",5,"🛒"],["Mosquito Repellant","Grocery",2,"🦟"],["Cozy Little Adventure","Stationery",10,"📘"],
+    ["My First Sunday School","Stationery",10,"📖"],["Diapers Softcare","Grocery",4,"🍼"],["Groovy Sip","Grocery",1,"🧃"],
+    ["Printing Color (per page)","Stationery",10,"🖨️"],["Printing Black and White","Stationery",5,"🖨️"],["Photocopying","Stationery",1,"📠"],
+    ["Pencils","Stationery",1,"✏️"],["Mealie-Meal","Grocery",10,"🌽"],["Peps Drink","Grocery",12,"🥤"],
+    ["Shake n' Sip","Grocery",15,"🥤"],["Milk-Daily","Grocery",20,"🥛"],["Anjoy","Grocery",1,"🧃"],
+    ["Books for Kids","Stationery",10,"📚"],["Joe Cookie","Grocery",8,"🍪"],["Milkit","Grocery",10,"🥛"],
+    ["Niyo","Grocery",2,"🛒"],["Kung Fu Big","Grocery",17,"🛒"],["Candles Big","Grocery",5,"🕯️"],
+    ["Fruiticana Gwava","Grocery",15,"🧃"],["Shake n' Sip Small","Grocery",10,"🥤"],["Milk Sachet","Grocery",8,"🥛"],
+    ["Chibwantu","Grocery",12,"🛒"],["Milkit Big","Grocery",20,"🥛"],["Big Munch","Grocery",3,"🛒"],
+    ["White Sugar","Grocery",35,"🍬"]
+  ],
+  /* PHOTOS: put pictures in a folder called images. Name each product photo like the product, for example
+     mealie-meal-25kg.jpg (lowercase, hyphens, no spaces). To use a different file name add it as a 5th value:
+     ['Rice 5kg','Groceries','','🍚','my-rice.jpg'] */
+  gallery:[['shop-front.jpg','Our shop front'],['shelves.jpg','Stocked shelves'],['counter.jpg','At the counter'],['fresh.jpg','Fresh stock']],
+  delivery:{
+    intro:'We deliver to your door. Send us your order and location, and we will confirm the total and the time.',
+    steps:[['Send your order','WhatsApp us the items and quantities.'],['We confirm','We reply with the total, delivery fee and time.'],['Receive and pay','Pay when it arrives, or as we agree.']],
+    areas:['East Garneton','Other parts of Kitwe (ask us)'],
+    fee:'Delivery fee depends on distance. Message us for a quote.'
+  },
+  /* REVIEWS: add only real feedback from customers who agreed, like this:
+     reviews:[['Name','What they said',5]]  (5 = number of stars) */
+  reviews:[]
 };
 /* ===== end of editable block ===== */
 var $=function(i){return document.getElementById(i)};
@@ -92,15 +141,21 @@ $('phone').textContent=SHOP.phone;$('phone').href=$('heroCall').href;
 $('addr').textContent=SHOP.address;$('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(SHOP.address+', '+SHOP.country);
 SHOP.features.forEach(function(f){var d=document.createElement('div');d.className='card';var b=document.createElement('b');b.textContent=f[0];var p=document.createElement('span');p.textContent=f[1];d.appendChild(b);d.appendChild(p);$('feat').appendChild(d)});
 SHOP.hours.forEach(function(h){var r=$('hours').insertRow();r.insertCell().textContent=h[0];r.insertCell().textContent=h[1]});
-var cats=['All'];SHOP.products.forEach(function(p){if(cats.indexOf(p[1])<0)cats.push(p[1])});var cur='All';
-function draw(){$('chips').innerHTML='';cats.forEach(function(c){var b=document.createElement('button');b.className='chip'+(c===cur?' on':'');b.textContent=c;b.onclick=function(){cur=c;draw()};$('chips').appendChild(b)});
-$('grid').innerHTML='';SHOP.products.filter(function(p){return cur==='All'||p[1]===cur}).forEach(function(p){
-var d=document.createElement('div');d.className='card p';
-var e=document.createElement('div');e.className='e';e.textContent=p[3];
-var h=document.createElement('h3');h.textContent=p[0];
-var c=document.createElement('div');c.className='c';c.textContent=p[1];
-var pr=document.createElement('div');pr.className='pr';pr.textContent=money(p[2]);
-var a=document.createElement('a');a.className='btn wa';a.target='_blank';a.rel='noopener';a.textContent='Order';a.href=wa('Hello '+SHOP.name+', I would like to order: '+p[0]+' ('+money(p[2])+').');
-[e,h,c,pr,a].forEach(function(x){d.appendChild(x)});$('grid').appendChild(d)})}
-draw();
+var cats=['All'],cur='All',qs='';SHOP.products.forEach(function(p){if(cats.indexOf(p[1])<0)cats.push(p[1])});
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function pic(file,fallback,alt,cls){var d=document.createElement('div');d.className=cls;d.textContent=fallback;if(file){var i=new Image();i.alt=alt;i.onload=function(){d.textContent='';d.appendChild(i)};i.src='images/'+file}return d}
+function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}
+function draw(){$('chips').innerHTML='';cats.forEach(function(c){var b=el('button','chip'+(c===cur?' on':''),c);b.onclick=function(){cur=c;draw()};$('chips').appendChild(b)});
+$('grid').innerHTML='';var list=SHOP.products.filter(function(p){return(cur==='All'||p[1]===cur)&&(!qs||p[0].toLowerCase().indexOf(qs)>-1)});
+if(!list.length)$('grid').appendChild(el('p','sub','No products match. Message us on WhatsApp and we will see what we can find.'));
+list.forEach(function(p){var has=p[2]!==''&&p[2]!=null,d=el('div','card p');
+d.appendChild(pic(p[4]||slug(p[0])+'.jpg',p[3],p[0],'img'));d.appendChild(el('h3',0,p[0]));d.appendChild(el('div','c',p[1]));d.appendChild(el('div','pr',has?money(p[2]):'Ask for price'));
+var a=el('a','btn wa','Order');a.target='_blank';a.rel='noopener';a.href=wa('Hello '+SHOP.name+', I would like to order: '+p[0]+(has?' ('+money(p[2])+')':'')+'.');d.appendChild(a);$('grid').appendChild(d)})}
+$('q').oninput=function(){qs=this.value.trim().toLowerCase();draw()};draw();
+SHOP.gallery.forEach(function(g){var f=el('figure');f.appendChild(pic(g[0],'📷 Photo coming soon',g[1],'img'));f.appendChild(el('figcaption',0,g[1]));$('gal').appendChild(f)});
+var D=SHOP.delivery;$('d-intro').textContent=D.intro;$('d-fee').textContent=D.fee;$('d-wa').href=wa('Hello '+SHOP.name+', I would like to ask about delivery to ');
+D.steps.forEach(function(s,i){var c=el('div','card');c.appendChild(el('div','n',i+1));c.appendChild(el('b',0,s[0]));c.appendChild(el('div',0,s[1]));$('d-steps').appendChild(c)});
+D.areas.forEach(function(a){$('d-areas').appendChild(el('span',0,a))});
+if(SHOP.reviews.length){SHOP.reviews.forEach(function(r){var c=el('div','card rev');c.appendChild(el('div','stars','★★★★★'.slice(0,r[2]||5)));c.appendChild(el('p',0,'“'+r[1]+'”'));c.appendChild(el('b',0,r[0]));$('revs').appendChild(c)})}
+else{var c=el('div','card');c.appendChild(el('b',0,'Be the first to share your experience'));c.appendChild(el('p',0,'Shopped with us? Tell us how we did. We would love to hear from you.'));var a=el('a','btn wa','Send us your feedback');a.target='_blank';a.rel='noopener';a.href=wa('Hello '+SHOP.name+', here is my feedback: ');c.appendChild(a);$('revs').appendChild(c)}
 </script></body></html>
